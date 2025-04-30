@@ -7,7 +7,7 @@ COPY --chown=gradle:gradle . .
 RUN gradle build --no-daemon
 
 # Create user
-#RUN useradd -ms /bin/bash spring
+# RUN useradd -ms /bin/bash spring
 
 # Execution stage
 FROM openjdk:17-jdk-slim
@@ -16,10 +16,10 @@ WORKDIR /app/
 COPY --from=build /home/gradle/springyou/build/libs/springyou-0.0.1-SNAPSHOT.jar app.jar
 
 # Change ownership (optional)
-RUN chown spring:spring /app/app.jar
+# RUN chown spring:spring /app/app.jar
 
 # Switch to non-root user
-#USER spring
+# USER spring
 
 # Directory for storing static files
 RUN mkdir /static
